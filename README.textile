@@ -11,6 +11,10 @@ h2. Installation & Usage.
 
 Any articles written from now on will start out with your chosen status.
 
+h2. To Do.
+
+* Add a proper select control to the prefs instead of a text input box.
+
 h2. Credits.
 
 This plugin was conceived in a "forum post":http://forum.textpattern.com/viewtopic.php?pid=249856#p249855 by Stef Dawson, was "incarnated":http://forum.textpattern.com/viewtopic.php?pid=250631#p250631 by Destry Wion and coaxed through childhood by Netcarver.
