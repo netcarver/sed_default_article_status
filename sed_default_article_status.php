@@ -1,7 +1,7 @@
 <?php
 
 $plugin['name'] = 'sed_default_article_status';
-$plugin['version'] = '0.1';
+$plugin['version'] = '0.2';
 $plugin['author'] = 'Stef Dawson, Destry Wion & Netcarver';
 $plugin['author_uri'] = 'http://forum.textpattern.com/viewtopic.php?pid=249855#p249855';
 $plugin['description'] = 'Makes the Draft article status default.';
