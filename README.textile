@@ -4,5 +4,5 @@ A plugin for "Textpattern":http://textpattern.com that allows you to define your
 
 h2. Credits.
 
-This plugin was conceived in a "forum post":http://forum.textpattern.com/viewtopic.php?pid=249855#p249855 by Stef Dawson, was "incarnated":http://forum.textpattern.com/viewtopic.php?pid=250631#p250631 by Destry Wion and coaxed through childhood by Netcarver.
+This plugin was conceived in a "forum post":http://forum.textpattern.com/viewtopic.php?pid=249856#p249855 by Stef Dawson, was "incarnated":http://forum.textpattern.com/viewtopic.php?pid=250631#p250631 by Destry Wion and coaxed through childhood by Netcarver.
 

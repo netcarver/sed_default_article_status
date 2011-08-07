@@ -7,34 +7,69 @@ $plugin['author_uri'] = 'http://forum.textpattern.com/viewtopic.php?pid=249855#p
 $plugin['description'] = 'Makes the Draft article status default.';
 $plugin['order'] = '5';
 $plugin['type'] = '3';
-if (!defined('PLUGIN_HAS_PREFS')) define('PLUGIN_HAS_PREFS', 0x0001); // This plugin wants to receive "plugin_prefs.{$plugin['name']}" events
-if (!defined('PLUGIN_LIFECYCLE_NOTIFY')) define('PLUGIN_LIFECYCLE_NOTIFY', 0x0002); // This plugin wants to receive "plugin_lifecycle.{$plugin['name']}" events
-$plugin['flags'] = '0';
+if (!defined('PLUGIN_HAS_PREFS')) define('PLUGIN_HAS_PREFS', 0x0001);
+if (!defined('PLUGIN_LIFECYCLE_NOTIFY')) define('PLUGIN_LIFECYCLE_NOTIFY', 0x0002);
+$plugin['flags'] = '2';
 
 if (!defined('txpinterface')) @include_once('zem_tpl.php');
 
 # --- BEGIN PLUGIN CODE ---
 
-if (@txpinterface=='admin') {
-   register_callback ('pub_draft_default', 'article_ui', 'status');
-}
+if (@txpinterface=='admin') 
+{
+	defined('sed_das_prefix') || define( 'sed_das_prefix' , 'sed_das' );
 
-function pub_draft_default($evt, $stp, $data, $rs) {
-   global $step;
+	global $textarray;
+	$textarray[sed_das_prefix.'_default_status'] = 'Default article status';
 
-   $js = '';
+	register_callback('sed_das_article', 'article_ui', 'status');
+	register_callback('sed_das_install', 'plugin_lifecycle.sed_default_article_status', 'installed' );
+	register_callback('sed_das_delete',  'plugin_lifecycle.sed_default_article_status', 'deleted'   );
 
-   if (in_array($step, array('', 'create'))) {
-      $js = <<<EOJS
+	$sed_sf_prefs = array
+	(
+		'default_status'  => array( 'type'=>'text_input' , 'val'=>'4' ) ,
+	);
+
+#$statuses = array(
+#1 => gTxt('draft'),
+#2 => gTxt('hidden'),
+#3 => gTxt('pending'),
+#4 => gTxt('live'),
+#5 => gTxt('sticky'),
+#);
+
+	function sed_das_install($evt, $stp='')
+	{
+		set_pref( sed_das_prefix.'_default_status' , '4' , 'publish' , 1 , 'text_input' );
+	}
+
+
+	function sed_das_delete ($evt, $stp='')
+	{
+		safe_delete( 'txp_prefs' , "`name`='".sed_das_prefix."_default_status'" );
+	}
+
+	function sed_das_article($evt, $stp, $data, $rs) 
+	{
+		global $step;
+
+		$js = '';
+
+		if (in_array($step, array('', 'create'))) 
+		{
+			$level = get_pref( sed_das_prefix.'_default_status', '4' );
+			$js = <<<EOJS
 <script type="text/javascript">
 jQuery(function() {
-   jQuery('input[id="status-1"]').prop('checked', true);
+	jQuery('input[id="status-$level"]').prop('checked', true);
 });
 </script>
 EOJS;
-   }
+		}
 
-   return $data.$js;
+		return $data.$js;
+	}
 }
 
 # --- END PLUGIN CODE ---
