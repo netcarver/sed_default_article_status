@@ -1,6 +1,15 @@
 h1. sed_default_article_status
 
-A plugin for "Textpattern":http://textpattern.com that allows you to define your prefered status for new articles.
+An admin plugin for "Textpattern":http://textpattern.com that allows you to define your prefered status for new articles.
+
+h2. Installation & Usage.
+
+# Download and install the plugin as usual.
+# Navigate to @Admin > Prefs > Advanced@ and scroll down to the *Publish* section.
+# Choose the default status you want from the options.
+# Save the preferences.
+
+Any articles written from now on will start out with your chosen status.
 
 h2. Credits.
 
