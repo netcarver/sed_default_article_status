@@ -4,13 +4,17 @@ An admin plugin for "Textpattern":http://textpattern.com that allows you to defi
 
 h2. Installation & Usage.
 
-# Download and install the plugin as usual.
+# "Download":https://gist.github.com/1130787 and install the plugin as usual.
 # Remember to enable the plugin too.
 # Navigate to @Admin > Prefs > Advanced@ and scroll down to the *Publish* section.
 # Choose the default status you want from the options.
 # Save the preferences.
 
 Any articles written from now on will start out with your chosen status.
+
+h2. Doing a v0.2 to v0.3 upgrade.
+
+Please ensure you delete v0.2 from your installation before you install v0.3 as they are not compatible.
 
 h2. Credits.
 
