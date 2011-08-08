@@ -5,7 +5,7 @@ An admin plugin for "Textpattern":http://textpattern.com that allows you to defi
 h2. Installation & Usage.
 
 # Download and install the plugin as usual.
-# Don't forget to enable it too.
+# Remember to enable the plugin too.
 # Navigate to @Admin > Prefs > Advanced@ and scroll down to the *Publish* section.
 # Choose the default status you want from the options.
 # Save the preferences.
