@@ -28,16 +28,22 @@ if (@txpinterface=='admin')
 
 	$sed_sf_prefs = array
 	(
-		'default_status'  => array( 'type'=>'text_input' , 'val'=>'4' ) ,
+		'default_status'  => array( 'type'=>'sed_das_status_list' , 'val'=>'4' ) ,
 	);
 
-#$statuses = array(
-#1 => gTxt('draft'),
-#2 => gTxt('hidden'),
-#3 => gTxt('pending'),
-#4 => gTxt('live'),
-#5 => gTxt('sticky'),
-#);
+	function sed_das_status_list($name, $val)
+	{
+		$vals = array(
+			'1' => gTxt('draft'),
+			'2' => gTxt('hidden'),
+			'3' => gTxt('pending'),
+			'4' => gTxt('live'),
+			'5' => gTxt('sticky'),
+			);
+
+		return selectInput($name, $vals, $val, '', '', $name);
+	}
+
 
 	function sed_das_install($evt, $stp='')
 	{
