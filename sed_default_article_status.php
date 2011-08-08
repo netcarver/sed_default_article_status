@@ -1,7 +1,7 @@
 <?php
 
 $plugin['name'] = 'sed_default_article_status';
-$plugin['version'] = '0.2';
+$plugin['version'] = '0.3';
 $plugin['author'] = 'Stef Dawson, Destry Wion & Netcarver';
 $plugin['author_uri'] = 'http://forum.textpattern.com/viewtopic.php?pid=249855#p249855';
 $plugin['description'] = 'Makes the Draft article status default.';
@@ -26,22 +26,24 @@ if (@txpinterface=='admin')
 	register_callback('sed_das_install', 'plugin_lifecycle.sed_default_article_status', 'installed' );
 	register_callback('sed_das_delete',  'plugin_lifecycle.sed_default_article_status', 'deleted'   );
 
-	$sed_sf_prefs = array
-	(
-		'default_status'  => array( 'type'=>'text_input' , 'val'=>'4' ) ,
-	);
+	function sed_das_status_list($name, $val)
+	{
+		$vals = array(
+			'1' => gTxt('draft'),
+			'2' => gTxt('hidden'),
+			'3' => gTxt('pending'),
+			'4' => gTxt('live'),
+			'5' => gTxt('sticky'),
+			);
 
-#$statuses = array(
-#1 => gTxt('draft'),
-#2 => gTxt('hidden'),
-#3 => gTxt('pending'),
-#4 => gTxt('live'),
-#5 => gTxt('sticky'),
-#);
+		return selectInput($name, $vals, $val, '', '', $name);
+	}
+
 
 	function sed_das_install($evt, $stp='')
 	{
-		set_pref( sed_das_prefix.'_default_status' , '4' , 'publish' , 1 , 'text_input' );
+		$status = get_pref( sed_das_prefix.'_default_status', '4' );
+		set_pref( sed_das_prefix.'_default_status' , $status , 'publish' , 1 , 'sed_das_status_list' );
 	}
 
 
@@ -96,15 +98,8 @@ EOJS;
 
 This is a "silent" functioning plugin; i.e., it only needs to be installed and active (turned on) to work.
 
-To make any other article status radio button besides Draft (and besides "Live", for which you would simply deactivate this plugin) the default, change <code>status-1</code> to one of the following:
-
-* @status-1@ (Draft)
-* @status-2@ (Hidden)
-* @status-3@ (Pending)
-* @status-4@ (Live)
-* @status-5@ (Sticky)
-
-It's *unlikely*, however, that you would ever want to use _Sticky_ as a default, as it's a very low use option under normal website operating conditions.
+Once you have enabled the plugin just go to @Admin > Prefs > Advanced > Publish@ and choose the default status for articles.
+Save the preferences and from then on, your articles will have that status by default.
 
 </div>
 
