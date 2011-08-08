@@ -26,22 +26,24 @@ if (@txpinterface=='admin')
 	register_callback('sed_das_install', 'plugin_lifecycle.sed_default_article_status', 'installed' );
 	register_callback('sed_das_delete',  'plugin_lifecycle.sed_default_article_status', 'deleted'   );
 
-	$sed_sf_prefs = array
-	(
-		'default_status'  => array( 'type'=>'text_input' , 'val'=>'4' ) ,
-	);
+	function sed_das_status_list($name, $val)
+	{
+		$vals = array(
+			'1' => gTxt('draft'),
+			'2' => gTxt('hidden'),
+			'3' => gTxt('pending'),
+			'4' => gTxt('live'),
+			'5' => gTxt('sticky'),
+			);
 
-#$statuses = array(
-#1 => gTxt('draft'),
-#2 => gTxt('hidden'),
-#3 => gTxt('pending'),
-#4 => gTxt('live'),
-#5 => gTxt('sticky'),
-#);
+		return selectInput($name, $vals, $val, '', '', $name);
+	}
+
 
 	function sed_das_install($evt, $stp='')
 	{
-		set_pref( sed_das_prefix.'_default_status' , '4' , 'publish' , 1 , 'text_input' );
+		$status = get_pref( sed_das_prefix.'_default_status', '4' );
+		set_pref( sed_das_prefix.'_default_status' , $status , 'publish' , 1 , 'sed_das_status_list' );
 	}
 
 
