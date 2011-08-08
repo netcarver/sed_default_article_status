@@ -5,15 +5,12 @@ An admin plugin for "Textpattern":http://textpattern.com that allows you to defi
 h2. Installation & Usage.
 
 # Download and install the plugin as usual.
+# Don't forget to enable it too.
 # Navigate to @Admin > Prefs > Advanced@ and scroll down to the *Publish* section.
 # Choose the default status you want from the options.
 # Save the preferences.
 
 Any articles written from now on will start out with your chosen status.
-
-h2. To Do.
-
-* Add a proper select control to the prefs instead of a text input box.
 
 h2. Credits.
 
