@@ -24,6 +24,8 @@ if (@txpinterface=='admin')
 
 	register_callback('sed_das_article', 'article_ui', 'status');
 	register_callback('sed_das_install', 'plugin_lifecycle.sed_default_article_status', 'installed' );
+	register_callback('sed_das_enable',  'plugin_lifecycle.sed_default_article_status', 'enabled' );
+	register_callback('sed_das_disable', 'plugin_lifecycle.sed_default_article_status', 'disabled' );
 	register_callback('sed_das_delete',  'plugin_lifecycle.sed_default_article_status', 'deleted'   );
 
 	function sed_das_status_list($name, $val)
@@ -43,7 +45,21 @@ if (@txpinterface=='admin')
 	function sed_das_install($evt, $stp='')
 	{
 		$status = get_pref( sed_das_prefix.'_default_status', '4' );
-		set_pref( sed_das_prefix.'_default_status' , $status , 'publish' , 1 , 'sed_das_status_list' );
+		set_pref( sed_das_prefix.'_default_status' , $status , 'publish' , 10 , 'sed_das_status_list' );
+	}
+
+
+	function sed_das_enable ($evt, $stp='')
+	{
+		$name = sed_das_prefix.'_default_status';
+		safe_update( 'txp_prefs', "`type`='1'", "`name`='$name'", 0 );
+	}
+
+
+	function sed_das_disable ($evt, $stp='')
+	{
+		$name = sed_das_prefix.'_default_status';
+		safe_update( 'txp_prefs', "`type`='10'", "`name`='$name'", 0 );
 	}
 
 
