@@ -1,7 +1,7 @@
 <?php
 
 $plugin['name'] = 'sed_default_article_status';
-$plugin['version'] = '0.4';
+$plugin['version'] = '0.4.1';
 $plugin['author'] = 'Stef Dawson, Destry Wion & Netcarver';
 $plugin['author_uri'] = 'http://forum.textpattern.com/viewtopic.php?pid=249855#p249855';
 $plugin['description'] = 'Makes the Draft article status default.';
@@ -111,8 +111,6 @@ EOJS;
 # --- BEGIN PLUGIN HELP ---
 
 <div id="sed_default_article_status">
-
-This is a "silent" functioning plugin; i.e., it only needs to be installed and active (turned on) to work.
 
 Once you have enabled the plugin just go to @Admin > Prefs > Advanced > Publish@ and choose the default status for articles.
 Save the preferences and from then on, your articles will have that status by default.
